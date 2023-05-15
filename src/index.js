@@ -25,21 +25,26 @@ function inputOnSearchBox(e) {
           Notify.info(
             'Too many matches found. Please enter a more specific name.'
           );
-        } else if (countries.length > 2 && countries.length <= 10) {
+        } else if (countries.length >= 2 && countries.length <= 10) {
           // countries.sort((a, b) =>
           //   a.name.official.localCompare(b.name.official)
           // );
-          console.log(countries);
+          let countryListMarkup = ''; // Розмітка для списку країн
           countries.forEach(country => {
-            getCountryItemsMarkup(
+            countryListMarkup = getCountryItemsMarkup(
               refs.countryInfoEl,
               country.name.official,
               country.name.common,
               country.flags.svg,
               country.flags.alt
             );
+            refs.countryInfoEl.insertAdjacentHTML(
+              'beforeend',
+              countryListMarkup
+            );
           });
-          refs.countryInfoEl.innerHTML = getCountryItemsMarkup(countries);
+          console.log(countries);
+          // refs.countryInfoEl.innerHTML = getCountryItemsMarkup(countries);
         } else if (countries.length === 1) {
           refs.countryListEl.innerHTML = getCountryListMarkup(countries[0]);
         }
