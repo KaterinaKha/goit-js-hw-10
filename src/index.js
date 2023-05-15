@@ -11,13 +11,13 @@ import debounce from 'lodash.debounce';
 const DEBOUNCE_DELAY = 300;
 
 function inputOnSearchBox(e) {
-  const inputValue = e.target.value.trim();
+  const inputValue = e.target.value.trim().toLowerCase();
   refs.countryInfoEl.innerHTML = '';
   refs.countryListEl.innerHTML = '';
 
   if (!inputValue) {
     return;
-  } else if (inputValue) {
+  } else if (!!inputValue) {
     fetchCountries(inputValue)
       .then(countries => {
         console.log(countries);
@@ -25,7 +25,7 @@ function inputOnSearchBox(e) {
           Notify.info(
             'Too many matches found. Please enter a more specific name.'
           );
-        } else if (countries.length >= 2 && countries.length <= 10) {
+        } else if (countries.length > 1 && countries.length <= 10) {
           // countries.sort((a, b) =>
           //   a.name.official.localCompare(b.name.official)
           // );
@@ -38,13 +38,10 @@ function inputOnSearchBox(e) {
               country.flags.svg,
               country.flags.alt
             );
-            refs.countryInfoEl.insertAdjacentHTML(
-              'beforeend',
-              countryListMarkup
-            );
+            refs.countryInfoEl.innerHTML = countryListMarkup;
           });
-          console.log(countries);
-          // refs.countryInfoEl.innerHTML = getCountryItemsMarkup(countries);
+          // console.log(countries);
+          console.log(countryListMarkup);
         } else if (countries.length === 1) {
           refs.countryListEl.innerHTML = getCountryListMarkup(countries[0]);
         }
