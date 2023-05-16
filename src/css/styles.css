@@ -18,3 +18,19 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+ul {
+  list-style-type: none;
+}
+.list-item {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.item-title {
+  display: inline;
+}
+.title-span {
+  font-size: medium;
+}
