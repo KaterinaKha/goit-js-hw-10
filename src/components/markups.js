@@ -14,7 +14,7 @@ function getCountryListMarkup({ name, capital, population, flags, languages }) {
 function getCountryItemsMarkup({ name, flags }) {
   return `
   <li class="list-item">
-    <img src="${flags.svg}" alt="${flags.alt}" width="40" height="30">
+    <img src="${flags.svg}" alt="${flags.alt}" width="60" height="40">
     <h2 class="item-title">${name.official} <span class="title-span">(${name.common})</span></h2>
   </li>`;
 }
