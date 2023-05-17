@@ -1,5 +1,5 @@
 import './css/styles.css';
-import { fetchCountries } from './components/fetchCountries';
+import { fetchCountries } from './services/fetchCountries';
 import {
   getCountryItemsMarkup,
   getCountryListMarkup,
@@ -31,6 +31,7 @@ function inputOnSearchBox(e) {
           );
           refs.countryInfoEl.innerHTML = markup;
           refs.countryListEl.innerHTML = '';
+          console.log(countries);
         } else if (countries.length === 1) {
           refs.countryListEl.innerHTML = getCountryListMarkup(countries[0]);
         }
